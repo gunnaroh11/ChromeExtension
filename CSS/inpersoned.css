@@ -4,8 +4,8 @@ html{
 body {
   min-width: 357px;
   height: 100%;
-  /*overflow-x: hidden;*/
-  font-family: 'Segoe UI', 'Open Sans', Arial, sans-serif;
+
+  font-family: helvetica, 'Segoe UI', 'Open Sans', Arial, sans-serif;
 }
 
 .headcontainer {
@@ -14,36 +14,48 @@ body {
 
 .headcontainer h2{
   color: #A30078;
-  border-bottom: 2px solid #74A599;
+  border-bottom: 3px solid #74A599;
 }
 
 .eventscontainer{
-
+  overflow: scroll;
+  overflow: visible;    
 }
 
+
 .event{
-  border-bottom: 1px solid #D3D3D3;
-  border-top: 1px solid #D3D3D3;
-  padding-bottom: 20px;
-  font-variant: helvetica;
+  border-bottom: 1px solid #E9EAED;  
+  padding: 20px;  
+  font-variant: helvetica;  
+}
+.event:hover{
+  background-color: #E9EAED;  
 }
 
 .event h4{
   margin-bottom: 1px;
+  margin-top: -5px;
 }
 
 .location{
-
+  margin-top: 4px;
 }
 
 .eventdate{
-
+  margin-top: 4px;
 }
 
+.eventinterest{
+  margin-top: 4px;
+
+}
 .eventlink{
 
 }
 
+
+
 .eventlink a{
 
 }
+
