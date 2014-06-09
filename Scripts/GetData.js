@@ -21,7 +21,7 @@ function GetAllEvents() {
                 return;
             
             if ( xmlHttp.responseText ) {
-                var xmlDoc = $.parseXML(xmlHttp.responseText;);
+                var xmlDoc = $.parseXML(xmlHttp.responseText);
                 xmlParser(xmlDoc);
             }
         }
@@ -35,23 +35,35 @@ function GetAllEvents() {
 }
 
 function xmlParser(xml) {
-
-    var activityList = $(xml).find("ActivityList");
-    var eventNameList = $(xml).find("EventName");
+    var xml = $(xml);
+    var activityList = xml.find("ActivityList");
+    var eventNameList = xml.find("EventName");
     activityList.each(function () {
+        var el = $(this);
     	
-    	var eventcolstr = "";
-    	eventcolstr += $(this).find("EventName").text();
-    	eventcolstr += $(this).find("StartDate").text();
-    	eventcolstr += $(this).find("Location").text();
-    	eventcolstr += $(this).find("TargetGender").text();
-    	eventcolstr += $(this).find("CreatorName").text();
-    	console.log(eventcolstr);
-        //$(".main").append('<div class="book"><div class="title">' + $(this).find("Title").text() +   '</div><div class="description">' + $(this).find("Description").text() + '</div><div   class="date">Published ' + $(this).find("Date").text() + '</div></div>');
-        //$(".book").fadeIn(1000);
+        $(".eventscontainer").append('<div class="event"><h4 class="eventname">'+
+                                            el.find("EventName").text()
+                                        +'</h4><div class="location">'+
+                                            el.find("Location").text()
+                                          +'</div><div class="eventdate">'+
+                                            el.find("StartDate").text()
+                                          +'</div><div class="eventlink"><a href="http://www.inpersoned.com">tengill</a></div></div>');
+        $(".event").fadeIn(1000);
+
+    	// var eventcolstr = "";
+    	// eventcolstr += $(this).find("EventName").text();
+    	// eventcolstr += $(this).find("StartDate").text();
+    	// eventcolstr += $(this).find("Location").text();
+    	// eventcolstr += $(this).find("TargetGender").text();
+    	// eventcolstr += $(this).find("CreatorName").text();
+    	// console.log(eventcolstr);
+     //    //$(".main").append('<div class="book"><div class="title">' + $(this).find("Title").text() +   '</div><div class="description">' + $(this).find("Description").text() + '</div><div   class="date">Published ' + $(this).find("Date").text() + '</div></div>');
+     //    //$(".book").fadeIn(1000);
      });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   GetAllEvents();
 });
+
+
