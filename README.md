@@ -37,5 +37,11 @@ Then run the gulp command to keep the build system running:
   - Get events for user that is logged in
   - Get notifications about new messages
 
+## TODO
+
+  - Add login
+  - Get events for user that is logged in
+  - Get notifications about new messages
+
 ## License
 [MIT licence](http://opensource.org/licenses/MIT)

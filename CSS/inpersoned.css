@@ -3,18 +3,30 @@ html{
 }
 body {
   min-width: 357px;
-  height: 100%;
-
+  max-width:  457px;
+  height: 100%;    
   font-family: helvetica, 'Segoe UI', 'Open Sans', Arial, sans-serif;
+  background-image: url("/inPersoned_pink.png");
+  background-repeat: no-repeat;
+  background-size: 130px;
+  background-position: 8px 20px;
 }
+
 
 .headcontainer {
 
 }
+.headcontainer h3{
+    margin-top: 60px;
+    
+    
+}
 
 .headcontainer h2{
-  color: #A30078;
+  /*color: #A30078;*/
+  margin-top: 60px;
   border-bottom: 3px solid #74A599;
+  font-family: sans-serif;
 }
 
 .eventscontainer{
@@ -27,7 +39,7 @@ body {
   border-bottom: 1px solid #E9EAED;  
   padding: 20px;  
   font-variant: helvetica;
-  cursor: pointer;
+  cursor: pointer;  
 }
 .event:hover{
   background-color: #E9EAED;  
@@ -39,15 +51,19 @@ body {
 }
 
 .location{
-  margin-top: 4px;
+  margin-top: 6px;
+  font-weight: bold;
+  font-style: italic;
+  color: #415E9B;
 }
 
 .eventdate{
   margin-top: 4px;
+  font-family: Georgia;
 }
 
-.eventinterest{
-  margin-top: 4px;
+.eventinterrest{
+  margin-top: 6px;
 
 }
 .eventlink{
