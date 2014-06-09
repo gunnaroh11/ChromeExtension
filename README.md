@@ -1,7 +1,7 @@
 InPersoned ChromeExtension
 ===============
 
-> Chrome Extension for the [inperosoned.com](http://inpersoned.com) social platform. Displays upcoming events.
+> Chrome Extension for the [inperosoned.com](http://inpersoned.com) social platform. The extension displays upcoming events.
  
 Uses precompiled handlebars template.
 
