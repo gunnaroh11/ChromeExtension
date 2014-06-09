@@ -1,69 +1,121 @@
 // maybe use chrome local storage area
 var storage = chrome.storage.local;
-// Timeout for request
-var requestTimeout = 2000; 
 
+// Handlebars.js template
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['events'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n<div class=\"event\" data-eventid=\"";
+  if (helper = helpers.eventid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.eventid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\r\n  <h4 class=\"eventname\">";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h4>\r\n    <div class=\"location\">";
+  if (helper = helpers.location) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.location); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\r\n   <div class=\"eventdate\">";
+  if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\r\n   <div class=\"eventinterrest\">";
+  if (helper = helpers.interrest) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.interrest); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\r\n</div>\r\n";
+  return buffer;
+  }
 
-function GetAllEvents() {    
-    var Url = "http://inpersoned.com/Activity/Xml.aspx";
-    //var Url = "http://www.verkskraning.is";
-    var xmlHttp = new XMLHttpRequest(); 
+  stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+})();
 
-    // set timeout for request
-    var abortReqTimer = window.setTimeout(function() {
-        xmlHttp.abort();
-    }, requestTimeout);
+// Main application
+var App = App || {};
+App.inPersoned = {
+    Config: {
+        EventsDiv: ".eventscontainer",
+        Url: "http://inpersoned.com/Activity/Xml.aspx",
+        RequestTimeout: 2000,
+        ListId: "ActivityList",
+        Template: "events"
 
-    try {
-        xmlHttp.onreadystatechange = function() {
-            if ( xmlHttp.readyState != 4 )
-                return;
-            
-            if ( xmlHttp.responseText ) {
-                var xmlDoc = $.parseXML(xmlHttp.responseText);
-                xmlParser(xmlDoc);
-            }
+    },
+    // Possibility of calling init with extra config
+    Init: function(config){
+        var that = this;
+        $.extend(that.Config, config);
+        that.GetEvents();
+    },
+    // Get events
+    GetEvents: function(){
+        var that = this;
+        var xhr = new XMLHttpRequest();
+        var abortReqTimer = window.setTimeout(function() {
+            xhr.abort();
+        }, that.Config.RequestTimeout);
+
+        try {
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != 4)
+                    return;              
+                if (xhr.responseText) {
+                    var xmlDoc = $.parseXML(xhr.responseText);
+                    that.DisplayEvents(xmlDoc);
+                }
+            };
+        } catch (e) {
+            console.log("error");
         }
-    } catch (e) {
-        console.log("error");
-        //handleError();
+        
+        xhr.open("GET", that.Config.Url, true);
+        xhr.send(null);
+    },
+    // Display the events
+    DisplayEvents: function(xml){
+        var that = this;
+        var xmlData = $(xml);
+        var list = xmlData.find(that.Config.ListId);
+        var items = [];
+        
+        list.each(function(){
+            var el = $(this);
+            items.push({"name": el.find("EventName").text(), "location": el.find("Location").text(), "date": el.find("StartDate").text(), "eventid": el.find("EventID").text(), "interest": el.find("Interests").text()});
+        });
+
+        // Call handlebars template
+        var template = Handlebars.templates[that.Config.Template];
+        var html = template(items);
+
+        $(that.Config.EventsDiv).hide().html(html).fadeIn('fast','linear');
+        that.BindEventClick();
+    },
+    // Bind click event
+    BindEventClick: function(){
+        var that = this;
+        $(that.Config.EventsDiv+" .event").on("click", function(){
+            var eId = this.getAttribute("data-eventid");
+            window.open("http://inpersoned.com/Activity/Activity.aspx?id="+eId);
+
+        });
     }
-    
-    xmlHttp.open( "GET", Url, true );
-    xmlHttp.send( null );
-}
+};
 
-function xmlParser(xml) {
-    var xml = $(xml);
-    var activityList = xml.find("ActivityList");
-    var eventNameList = xml.find("EventName");
-    activityList.each(function () {
-        var el = $(this);
-    	
-        $(".eventscontainer").append('<div class="event"><h4 class="eventname">'+
-                                            el.find("EventName").text()
-                                        +'</h4><div class="location">'+
-                                            el.find("Location").text()
-                                          +'</div><div class="eventdate">'+
-                                            el.find("StartDate").text()
-                                          +'</div><div class="eventlink"><a href="http://www.inpersoned.com">tengill</a></div></div>');
-        $(".event").fadeIn(1000);
-
-    	// var eventcolstr = "";
-    	// eventcolstr += $(this).find("EventName").text();
-    	// eventcolstr += $(this).find("StartDate").text();
-    	// eventcolstr += $(this).find("Location").text();
-    	// eventcolstr += $(this).find("TargetGender").text();
-    	// eventcolstr += $(this).find("CreatorName").text();
-    	// console.log(eventcolstr);
-     //    //$(".main").append('<div class="book"><div class="title">' + $(this).find("Title").text() +   '</div><div class="description">' + $(this).find("Description").text() + '</div><div   class="date">Published ' + $(this).find("Date").text() + '</div></div>');
-     //    //$(".book").fadeIn(1000);
-     });
-}
-
+// Start application when DOMContentLoaded event is fired
 document.addEventListener('DOMContentLoaded', function () {
-  GetAllEvents();
+  App.inPersoned.GetEvents();
 });
 
 
