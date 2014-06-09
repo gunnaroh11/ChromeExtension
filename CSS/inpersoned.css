@@ -26,7 +26,8 @@ body {
 .event{
   border-bottom: 1px solid #E9EAED;  
   padding: 20px;  
-  font-variant: helvetica;  
+  font-variant: helvetica;
+  cursor: pointer;
 }
 .event:hover{
   background-color: #E9EAED;  
@@ -52,8 +53,6 @@ body {
 .eventlink{
 
 }
-
-
 
 .eventlink a{
 
