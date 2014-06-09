@@ -15,7 +15,7 @@ Install handlebars compiler with npm:
 
 	npm install handlebars@1.3.0 -g
 
-Example, run command in Scripts/templates:
+Example, run command in Scripts/templates directory:
 	
 	handlebars events.handlebars -f events.js -k each
 
