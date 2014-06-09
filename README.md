@@ -9,10 +9,6 @@ Gulp watches for changes then builds, minifies and concatenates javascript files
 ## To build and Develop:
 =======
 
-Uses precompiled handlebars template.
-
-## To build handlebars template:
-
 Prerequisites:
 
 	* node.js
