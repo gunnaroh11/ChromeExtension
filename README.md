@@ -2,7 +2,6 @@ InPersoned ChromeExtension
 ===============
 
 > Chrome Extension for the [inperosoned.com](http://inpersoned.com) social platform. Displays upcoming events.
-<<<<<<< HEAD
 
 Uses Gulp.js as a buildsystem for javascript.
 Gulp watches for changes then builds, minifies and concatenates javascript files.
@@ -13,7 +12,6 @@ Gulp watches for changes then builds, minifies and concatenates javascript files
 Uses precompiled handlebars template.
 
 ## To build handlebars template:
->>>>>>> master
 
 Prerequisites:
 
@@ -31,14 +29,6 @@ Then run the gulp command to keep the build system running:
 	gulp
 
 
-<<<<<<< HEAD
-=======
-Example, run command in Scripts/templates directory:
-	
-	handlebars events.handlebars -f events.js -k each
-
-
->>>>>>> master
 ## Resources
 
   - [nodejs.org](http://nodejs.org/)
