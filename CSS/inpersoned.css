@@ -1,0 +1,45 @@
+body {
+  min-width: 357px;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', 'Open Sans', Arial, sans-serif;
+}
+
+.headcontainer {
+
+}
+
+.headcontainer h2{
+  color: #A30078;
+  border-bottom: 2px solid #74A599;
+}
+
+.eventscontainer{
+
+}
+
+.event{
+  border-bottom: 1px solid #D3D3D3;
+  border-top: 1px solid #D3D3D3;
+  padding-bottom: 20px;
+  font-variant: helvetica;
+}
+
+.event h4{
+  margin-bottom: 1px;
+}
+
+.location{
+
+}
+
+.eventdate{
+
+}
+
+.eventlink{
+
+}
+
+.eventlink a{
+
+}
