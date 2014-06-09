@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "inPersoned",
-  "description": "TEvents list from inPersoned",
+  "description": "Events list from inPersoned",
   "version": "1.0",
 
   "browser_action": {
