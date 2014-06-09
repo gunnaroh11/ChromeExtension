@@ -6,7 +6,7 @@ InPersoned ChromeExtension
 Uses Gulp.js as a buildsystem for javascript.
 Gulp watches for changes then builds, minifies and concatenates javascript files.
 
-## To build:
+## To build and Develop:
 
 Prerequisites:
 
