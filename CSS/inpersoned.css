@@ -29,8 +29,7 @@ body {
   font-variant: helvetica;  
 }
 .event:hover{
-  background-color: #E9EAED;
-
+  background-color: #E9EAED;  
 }
 
 .event h4{
@@ -39,15 +38,15 @@ body {
 }
 
 .location{
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
 .eventdate{
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
 .eventinterest{
-  margin-top: 3px;
+  margin-top: 4px;
 
 }
 .eventlink{

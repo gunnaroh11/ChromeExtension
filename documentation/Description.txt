@@ -1,1 +1,3 @@
-Skjolun
+inPersoned Chrome extension
+
+This extention adds a button to the toolbar and shows upcoming events from www.inPersoned.com
