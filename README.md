@@ -3,7 +3,7 @@ InPersoned ChromeExtension
 
 Uses precompiled handlebars template.
 
-## To build:
+## To build handlebars template:
 
 Prerequisites:
 
@@ -14,6 +14,11 @@ Prerequisites:
 Install handlebars compiler with npm:
 
 	npm install handlebars@1.3.0 -g
+
+Example:
+cd to Scripts/templates and run:
+	
+	handlebars events.handlebars -f events.js -k each
 
 
 Resources
