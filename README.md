@@ -3,23 +3,25 @@ InPersoned ChromeExtension
 
 > Chrome Extension for the [inperosoned.com](http://inpersoned.com) social platform. Displays upcoming events.
 
-Uses precompiled handlebars template.
+Uses Gulp.js as a buildsystem for javascript.
+Gulp watches for changes then builds, minifies and concatenates javascript files.
 
-## To build handlebars template:
+## To build and Develop:
 
 Prerequisites:
 
 	* node.js
 	* npm
-	* handlebars.js 1.3.0 compiler
+	* gulp.js 
 
-Install handlebars compiler with npm:
+Install dependencies from root of project with npm:
 
-	npm install handlebars@1.3.0 -g
+	npm install gulp -g
+	npm install
 
-Example, run command in Scripts/templates directory:
+Then run the gulp command to keep the build system running:
 	
-	handlebars events.handlebars -f events.js -k each
+	gulp
 
 
 ## Resources
@@ -27,6 +29,13 @@ Example, run command in Scripts/templates directory:
   - [nodejs.org](http://nodejs.org/)
   - [npm](http://npmjs.org/)
   - [handlebars.js](http://handlebarsjs.com/)
+  - [gulp.js](http://gulpjs.com/)
+
+## TODO
+
+  - Add login
+  - Get events for user that is logged in
+  - Get notifications about new messages
 
 ## TODO
 

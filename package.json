@@ -1,0 +1,33 @@
+{
+  "name": "ChromeExtension",
+  "version": "0.0.01",
+  "description": "InPersoned ChromeExtension",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp-define-module": "~0.1.1",
+    "gulp-handlebars": "~2.1.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.7.0",
+    "gulp-rename": "~1.2.0",
+    "gulp-concat": "~2.2.0",
+    "gulp-uglify": "~0.3.0",
+    "gulp-jshint": "~1.6.2",
+    "gulp-sass": "~0.7.2",
+    "gulp-minify-css": "~0.3.4",
+    "gulp-declare": "~0.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gunnaroh11/ChromeExtension.git"
+  },
+  "author": "valurhrafn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gunnaroh11/ChromeExtension/issues"
+  },
+  "homepage": "https://github.com/gunnaroh11/ChromeExtension"
+}
