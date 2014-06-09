@@ -1,64 +1,57 @@
+// maybe use chrome local storage area
+var storage = chrome.storage.local;
+// Timeout for request
+var requestTimeout = 2000; 
 
 
-(function() {
-  if (! window.jQuery ) {
-    var s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.async = true;
-    s.src = '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'; // you can change this url by latest jQuery version
-    (document.getElementsByTagName('head')[0] ||
-      document.getElementsByTagName('body')[0]).appendChild(s);
-  }
-}());
 
-var xmlHttp = null;
-
-function GetAllEvents()
-{    
-    var Url = "inpersoned.com/Activity/Xml.aspx";
+function GetAllEvents() {    
+    var Url = "http://inpersoned.com/Activity/Xml.aspx";
     //var Url = "http://www.verkskraning.is";
-    xmlHttp = new XMLHttpRequest(); 
-    xmlHttp.onreadystatechange = ProcessRequest;
+    var xmlHttp = new XMLHttpRequest(); 
+
+    // set timeout for request
+    var abortReqTimer = window.setTimeout(function() {
+        xmlHttp.abort();
+    }, requestTimeout);
+
+    try {
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState != 4 )
+                return;
+            
+            if ( xmlHttp.responseText ) {
+                var xmlDoc = $.parseXML(xmlHttp.responseText;);
+                xmlParser(xmlDoc);
+            }
+        }
+    } catch (e) {
+        console.log("error");
+        //handleError();
+    }
+    
     xmlHttp.open( "GET", Url, true );
     xmlHttp.send( null );
 }
 
-function ProcessRequest() 
-{
-    if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ) 
-    {
-        if ( xmlHttp.responseText == "Not found" ) 
-        {
-            alert('not found !!!');
-        }
-        else
-        {
-        	alert('woohoo found');
-        	var elemContainer = document.getElementById("ActivityList");
-        	//elemContainer.innerHTML=xmlhttp.responseText;
-            //var info = eval ( "(" + xmlHttp.responseText + ")" );
-            var info = elemContainer.innerHTML;
-            xmlParser(info);
-            alert(info);
-        }                    
-    }
-}
-
 function xmlParser(xml) {
 
-var activityList = $(xml).find("ActivityList");
-var eventNameList = $(xml).find("EventName");
-activityList.each(function () {
-	
-	var eventcolstr = "";
-	eventcolstr += $(this).find("EventName").text();
-	eventcolstr += $(this).find("StartDate").text();
-	eventcolstr += $(this).find("Location").text();
-	eventcolstr += $(this).find("TargetGender").text();
-	eventcolstr += $(this).find("CreatorName").text();
-	alert(eventcolstr);
-    //$(".main").append('<div class="book"><div class="title">' + $(this).find("Title").text() +   '</div><div class="description">' + $(this).find("Description").text() + '</div><div   class="date">Published ' + $(this).find("Date").text() + '</div></div>');
-    //$(".book").fadeIn(1000);
- });
-
+    var activityList = $(xml).find("ActivityList");
+    var eventNameList = $(xml).find("EventName");
+    activityList.each(function () {
+    	
+    	var eventcolstr = "";
+    	eventcolstr += $(this).find("EventName").text();
+    	eventcolstr += $(this).find("StartDate").text();
+    	eventcolstr += $(this).find("Location").text();
+    	eventcolstr += $(this).find("TargetGender").text();
+    	eventcolstr += $(this).find("CreatorName").text();
+    	console.log(eventcolstr);
+        //$(".main").append('<div class="book"><div class="title">' + $(this).find("Title").text() +   '</div><div class="description">' + $(this).find("Description").text() + '</div><div   class="date">Published ' + $(this).find("Date").text() + '</div></div>');
+        //$(".book").fadeIn(1000);
+     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  GetAllEvents();
+});
